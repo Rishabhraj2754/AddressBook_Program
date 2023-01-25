@@ -1,9 +1,10 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
     Scanner scan = new Scanner(System.in);
 
-    public void CreateContact(){
+    public Contact addDetails(ArrayList arrayList){
      Contact contact = new Contact();
         System.out.println("Enter your first name");
         String firstName = scan.next();
@@ -29,9 +30,29 @@ public class AddressBook {
         System.out.println("Enter your phone number");
         long phoneNumber = scan.nextLong();
         contact.setPhoneNumber(phoneNumber);
-
-
+        arrayList.add(contact);
+        return contact;
     }
+   public void multipleContact(ArrayList arrayList){
+      AddressBook addressBook = new AddressBook();
+      String charcter;
+      do {
+         Scanner scan = new Scanner(System.in);
+         System.out.println("Enter choice 1.to add Contact ");
+         int choice;
+         choice = scan.nextInt();
+         switch (choice) {
 
+            case 1:
+               addressBook.addDetails(arrayList);
+               break;
+            default:
+               System.out.println("Invalid Input");
+         }
+         System.out.println("DO YOU WANT TO ADD MORE CONTACT (PRESS y to continue)");
+         charcter = scan.next();
+      } while (charcter.equals("y") || charcter.equals("Y"));
+      System.out.println(arrayList);
+   }
 
 }
